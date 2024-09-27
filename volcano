@@ -1,0 +1,154 @@
+
+public class Volcano {
+	
+	private String name;
+	private int[] degrees;
+	private int count=0;
+	private int size; //שווה לdegrees.length 
+	 
+	public Volcano( String name,int size) {
+	        this.name = name;
+	        this.size=size;
+	    }
+	 public int gerCount() {
+		 return count;
+	 }
+	 public String gerName() {
+		 return name;
+	 }
+	 
+	 public Volcano(Volcano other) {
+		 count=other.count;
+		 for(int i=0;i<degrees.length;i++) {
+			 degrees[i]=other.degrees[i];
+		 }
+		 name=other.name;
+	 
+	 }
+	 
+	 
+	
+	 public boolean add(int add) {
+		 if (count==size) {
+			 return false;
+		 }
+		else {
+			degrees[count]=size;
+			count++;
+			return true;
+			 
+		 }
+	 }
+	 
+	 public void delete(int index) {
+		 degrees[index]=-1;
+		 for(int i=index+1;i<size;i++) {
+			 degrees[i]=degrees[index];
+			 index++;
+			 
+			 }
+	 }
+	 
+	 
+	 public void deleteAll() {
+		 count=0;
+	 }
+	 
+	 
+	 public void fix(int index, int temp) {
+		 for(int i=0;i<size;i++) {
+			 degrees[index]=temp;
+		 }
+
+	 }
+	 
+	 public int average() {
+		 int sum=0;
+		 int count=0;
+		 int ave=0;
+		 for (int i=0;i<size;i++) {
+			 sum+=degrees[i];
+		 }
+		 ave=sum/count;
+		 return ave;
+	 }
+	 
+	 public int maxUnder(int x) {
+		 int max=-1;
+		 int z=0;
+		 for (int i=0;i<size;i++) {
+			 if(degrees[i]>max&&degrees[i]<x) {
+				 max=degrees[i];
+			 }
+			 
+		 }
+		 return max;
+
+	 }
+
+
+	 public void print() {
+		 int z=1;
+		 for(int i=0;i<size;i++) {
+			 System.out.print(z+")");
+			 System.out.println(degrees[i]);
+		 }
+	 }
+	 
+
+	 public String toString () {
+		 String s="The saved measurements are:" + count +"the length of the array is" + size;
+		 
+		 return s;
+	 }
+
+	
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     //main
+
+
+     
+public class Main {
+	public static void main(String[] args) {
+		Volcano v = new Volcano("daniel",10);
+		for (int i=0;i<7;i++) {
+			int num=(int )Math.random()*2000+1;
+			v.add(num);
+		}
+		
+		Volcano v2 = new Volcano(v);
+	   v.delete(5);
+	   v.print();
+	   int ave=v.average();
+	    System.out.println("the average is "+ave);
+	    int index=v.maxUnder(32);
+	    System.out.println(index+"  is the index of the max num under x");
+	    v.deleteAll();
+	    int temp=36;
+	    int index1=4;
+	    v.fix(index1, temp);
+
+
+
+
+	}
+	}
